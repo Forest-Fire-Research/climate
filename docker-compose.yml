@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:14.5
+    user: "1003:1003"
+    environment:
+      POSTGRES_PASSWORD: lightning
+      POSTGRES_USER: mutakabbir
+      POSTGRES_DB: climate
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes: 
+      - /data/mutakabbir/Lightning/climate/DB:/var/lib/postgresql/data:Z
