@@ -3,17 +3,19 @@ version: '3.1'
 services:
   db:
     image: postgres:12.3
-    container_name: climate-database
+    container_name: forest_fire_climate_db
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile.climate-database
-    user: "1003:1003"
+      network: host
+    user: root
     environment:
-      POSTGRES_PASSWORD: lightning
-      POSTGRES_USER: mutakabbir
-      POSTGRES_DB: climate
+      POSTGRES_PASSWORD: ffmodeling
+      POSTGRES_USER: adminff
+      POSTGRES_DB: ff
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes: 
-      - /data/mutakabbir/Lightning/climate/DB:/var/lib/postgresql/data:Z
+      - ./DB:/var/lib/postgresql/data:Z
